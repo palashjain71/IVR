@@ -1,20 +1,25 @@
-package controller;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dataAccessLayer.DB_IVR;
 import sampleIVR.Locales.IVR_ModalClass;
 
-public class ControllerServlet {
-
-	private static final long serialVersionUID = 1L;
+/**
+ * Servlet implementation class ControllerServlet
+ */
+@WebServlet(name = "ControllerServletIVR", urlPatterns = { "/ControllerServletIVR" })
+public class ControllerServlet extends HttpServlet {
 	private DB_IVR dB_IVR;
 
 	public void init() {
@@ -88,7 +93,6 @@ public class ControllerServlet {
 	private void insertBook(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		String ivrLocales = request.getParameter("locales");
 		String ivrLocalesDescrption = request.getParameter("locale_EntryMsg");
-
 		IVR_ModalClass newIVR = new IVR_ModalClass(ivrLocales, ivrLocalesDescrption);
 		dB_IVR.insertIVR(newIVR);
 		response.sendRedirect("list");
@@ -111,5 +115,6 @@ public class ControllerServlet {
 		response.sendRedirect("list");
 
 	}
+
 
 }
