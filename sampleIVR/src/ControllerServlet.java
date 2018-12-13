@@ -46,10 +46,10 @@ public class ControllerServlet extends HttpServlet {
 				showNewForm(request, response);
 				break;
 			case "/insert":
-				insertBook(request, response);
+				insertIVR(request, response);
 				break;
 			case "/delete":
-				deleteBook(request, response);
+				deleteIVR(request, response);
 				break;
 			case "/edit":
 				showEditForm(request, response);
@@ -90,7 +90,7 @@ public class ControllerServlet extends HttpServlet {
 
 	}
 
-	private void insertBook(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void insertIVR(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		String ivrLocales = request.getParameter("locales");
 		String ivrLocalesDescrption = request.getParameter("locale_EntryMsg");
 		IVR_ModalClass newIVR = new IVR_ModalClass(ivrLocales, ivrLocalesDescrption);
@@ -101,13 +101,12 @@ public class ControllerServlet extends HttpServlet {
 	private void updateBook(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		String ivrLocales = request.getParameter("locales");
 		String ivrLocalesDescrption = request.getParameter("locale_EntryMsg");
-
 		IVR_ModalClass newIVR = new IVR_ModalClass(ivrLocales, ivrLocalesDescrption);
 		dB_IVR.updateIVR(newIVR);
 		response.sendRedirect("list");
 	}
 
-	private void deleteBook(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void deleteIVR(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		String ivrLocales = request.getParameter("locales");
 		String ivrLocalesDescrption = request.getParameter("locale_EntryMsg");
 		IVR_ModalClass newIVR = new IVR_ModalClass(ivrLocales, ivrLocalesDescrption);
